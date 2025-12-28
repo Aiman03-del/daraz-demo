@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import ProductCard from "@/components/product-card"
+import ProductSlider from "@/components/product-slider"
 import { getProducts } from "@/lib/product-store"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -20,35 +21,37 @@ export default function HomePage() {
 
   return (
     <section className="space-y-20">
-      {/* Mega Hero Section */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary/80 to-primary/60 text-white p-12 md:p-24">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-48 -mt-48"></div>
-        <div className="relative z-10 space-y-8 max-w-3xl">
-          <div className="inline-block bg-white/20 px-4 py-2 rounded-full text-sm font-medium">
-            ✨ Welcome to Daraz Demo Platform
-          </div>
-          <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-tight">
-            Discover Amazing Products
-          </h1>
-          <p className="text-xl text-white/90 max-w-xl">
-            Shop from verified resellers with confidence. Fast delivery, competitive prices, and quality guaranteed on every purchase.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="#trending">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 w-full sm:w-auto">
-                <ShoppingBag className="mr-2 h-5 w-5" />
-                Shop Now
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
-                Become a Seller
-              </Button>
-            </Link>
-          </div>
+      {/* Product Slider Banner */}
+      {!isLoading && products.length > 0 && (
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-8 md:p-12 border border-slate-200 dark:border-slate-700">
+          <ProductSlider products={products.slice(0, 10)} />
         </div>
-      </div>
+      )}
 
+      {/* Empty State */}
+      {!isLoading && products.length === 0 && (
+        <div className="flex flex-col items-center justify-center py-32 space-y-6">
+          <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
+            <svg className="w-16 h-16 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+            </svg>
+          </div>
+          <div className="text-center space-y-2">
+            <h2 className="text-4xl font-bold">No Products Available</h2>
+            <p className="text-muted-foreground text-lg max-w-md">
+              There are currently no products listed. Please check back later or become a seller to add products!
+            </p>
+          </div>
+          <Link href="/login">
+            <Button size="lg">
+              Become a Seller
+            </Button>
+          </Link>
+        </div>
+      )}
+
+      {products.length > 0 && (
+      <>
       {/* Stats with better design */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 p-8 rounded-xl text-center space-y-3 border border-blue-200 dark:border-blue-800">
@@ -238,6 +241,8 @@ export default function HomePage() {
           </Button>
         </Link>
       </div>
+      </>
+      )}
     </section>
   )
 }

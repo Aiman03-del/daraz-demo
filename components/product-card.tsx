@@ -33,8 +33,6 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div suppressHydrationWarning>
       <motion.div
         initial={isMounted ? false : undefined}
-        whileHover={isMounted ? { scale: 1.03 } : {}}
-        transition={isMounted ? { type: "spring", stiffness: 200 } : {}}
       >
         <Card className="overflow-hidden">
         <div className="relative h-48 w-full">
