@@ -61,73 +61,73 @@ export default function Navbar() {
       className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 shadow-sm"
       suppressHydrationWarning
     >
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
+      <div className="container mx-auto flex items-center justify-between h-14 sm:h-16 px-3 sm:px-4">
         <Link
           href="/"
-          className="flex items-center gap-3 font-bold text-xl hover:opacity-80 transition"
+          className="flex items-center gap-2 sm:gap-3 font-bold text-lg sm:text-xl hover:opacity-80 transition"
         >
-          <ShoppingBag className="h-6 w-6 text-primary" />
-          <span>Daraz</span>
+          <ShoppingBag className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+          <span className="hidden xs:inline">Daraz</span>
         </Link>
 
         {!isMounted ? (
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-6">
             <Link
               href="/"
-              className="text-sm hover:text-primary transition font-medium"
+              className="text-xs sm:text-sm hover:text-primary transition font-medium hidden sm:inline"
             >
               Home
             </Link>
             <Link
               href="/about"
-              className="text-sm hover:text-primary transition font-medium"
+              className="text-xs sm:text-sm hover:text-primary transition font-medium hidden sm:inline"
             >
               About
             </Link>
             <Link href="/login">
-              <Button size="sm" className="px-6">
+              <Button size="sm" className="px-3 sm:px-6 text-xs sm:text-sm h-8 sm:h-9">
                 Sign In
               </Button>
             </Link>
           </div>
         ) : !userInfo ? (
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-6">
             <Link
               href="/"
-              className="text-sm hover:text-primary transition font-medium"
+              className="text-xs sm:text-sm hover:text-primary transition font-medium hidden sm:inline"
             >
               Home
             </Link>
             <Link
               href="/about"
-              className="text-sm hover:text-primary transition font-medium"
+              className="text-xs sm:text-sm hover:text-primary transition font-medium hidden sm:inline"
             >
               About
             </Link>
             <Link href="/login">
-              <Button size="sm" className="px-6">
+              <Button size="sm" className="px-3 sm:px-6 text-xs sm:text-sm h-8 sm:h-9">
                 Sign In
               </Button>
             </Link>
           </div>
         ) : (
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-6">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="rounded-full h-10 w-10 p-0 hover:bg-muted"
+                  className="rounded-full h-8 w-8 sm:h-10 sm:w-10 p-0 hover:bg-muted"
                 >
-                  <div className="w-10 h-10 rounded-full bg-linear-to-br from-primary to-primary/70 flex items-center justify-center">
-                    <User className="h-5 w-5 text-white" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-linear-to-br from-primary to-primary/70 flex items-center justify-center">
+                    <User className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                   </div>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-64 mt-2">
-                <div className="px-4 py-4 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    <User className="h-5 w-5 text-primary" />
+              <DropdownMenuContent align="end" className="w-56 sm:w-64 mt-2">
+                <div className="px-3 sm:px-4 py-3 sm:py-4 flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <User className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-sm truncate">

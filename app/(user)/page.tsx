@@ -53,7 +53,7 @@ export default function HomePage() {
       {products.length > 0 && (
       <>
       {/* Stats with better design */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 p-8 rounded-xl text-center space-y-3 border border-blue-200 dark:border-blue-800">
           <ShoppingBag className="h-8 w-8 mx-auto text-blue-600 dark:text-blue-400" />
           <p className="text-3xl font-bold">{products.length}</p>
@@ -77,41 +77,41 @@ export default function HomePage() {
       </div>
 
       {/* Trust Badges */}
-      <div className="bg-muted rounded-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div className="flex flex-col items-center gap-3 text-center">
-          <Truck className="h-8 w-8 text-primary" />
-          <span className="font-semibold text-sm">Fast Delivery</span>
+      <div className="bg-muted rounded-xl p-4 sm:p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <div className="flex flex-col items-center gap-2 sm:gap-3 text-center">
+          <Truck className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+          <span className="font-semibold text-xs sm:text-sm">Fast Delivery</span>
         </div>
-        <div className="flex flex-col items-center gap-3 text-center">
-          <Shield className="h-8 w-8 text-primary" />
-          <span className="font-semibold text-sm">Secure Payment</span>
+        <div className="flex flex-col items-center gap-2 sm:gap-3 text-center">
+          <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+          <span className="font-semibold text-xs sm:text-sm">Secure Payment</span>
         </div>
-        <div className="flex flex-col items-center gap-3 text-center">
-          <Heart className="h-8 w-8 text-primary" />
-          <span className="font-semibold text-sm">Quality Assured</span>
+        <div className="flex flex-col items-center gap-2 sm:gap-3 text-center">
+          <Heart className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+          <span className="font-semibold text-xs sm:text-sm">Quality Assured</span>
         </div>
-        <div className="flex flex-col items-center gap-3 text-center">
-          <Zap className="h-8 w-8 text-primary" />
-          <span className="font-semibold text-sm">Best Prices</span>
+        <div className="flex flex-col items-center gap-2 sm:gap-3 text-center">
+          <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+          <span className="font-semibold text-xs sm:text-sm">Best Prices</span>
         </div>
       </div>
 
       {/* Trending Products Section */}
-      <div id="trending" className="space-y-10">
-        <div className="space-y-3">
-          <div className="inline-block bg-primary/10 px-4 py-2 rounded-full text-sm font-semibold text-primary">
+      <div id="trending" className="space-y-6 sm:space-y-10">
+        <div className="space-y-2 sm:space-y-3">
+          <div className="inline-block bg-primary/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-primary">
             Hot Deals
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             Trending Products
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
             Explore our most popular items right now. Hand-picked from verified sellers.
           </p>
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {[...Array(6)].map((_, i) => (
               <div key={i} className="border rounded-xl p-4 bg-card shadow-sm">
                 <Skeleton className="h-40 w-full mb-3" />
@@ -121,7 +121,7 @@ export default function HomePage() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
