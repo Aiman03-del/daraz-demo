@@ -1,0 +1,223 @@
+"use client"
+
+import ProductCard from "@/components/product-card"
+import { getProducts } from "@/lib/product-store"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { ShoppingBag, Users, TrendingUp, Award, Zap, Heart, Truck, Shield } from "lucide-react"
+
+export default function HomePage() {
+  const products = getProducts()
+
+  return (
+    <section className="space-y-20">
+      {/* Mega Hero Section */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary/80 to-primary/60 text-white p-12 md:p-24">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-48 -mt-48"></div>
+        <div className="relative z-10 space-y-8 max-w-3xl">
+          <div className="inline-block bg-white/20 px-4 py-2 rounded-full text-sm font-medium">
+            ✨ Welcome to Daraz Demo Platform
+          </div>
+          <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-tight">
+            Discover Amazing Products
+          </h1>
+          <p className="text-xl text-white/90 max-w-xl">
+            Shop from verified resellers with confidence. Fast delivery, competitive prices, and quality guaranteed on every purchase.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link href="#trending">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 w-full sm:w-auto">
+                <ShoppingBag className="mr-2 h-5 w-5" />
+                Shop Now
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
+                Become a Seller
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats with better design */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 p-8 rounded-xl text-center space-y-3 border border-blue-200 dark:border-blue-800">
+          <ShoppingBag className="h-8 w-8 mx-auto text-blue-600 dark:text-blue-400" />
+          <p className="text-3xl font-bold">{products.length}</p>
+          <p className="text-sm text-muted-foreground">Products Listed</p>
+        </div>
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 p-8 rounded-xl text-center space-y-3 border border-purple-200 dark:border-purple-800">
+          <Users className="h-8 w-8 mx-auto text-purple-600 dark:text-purple-400" />
+          <p className="text-3xl font-bold">3</p>
+          <p className="text-sm text-muted-foreground">Verified Sellers</p>
+        </div>
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950 dark:to-orange-900 p-8 rounded-xl text-center space-y-3 border border-orange-200 dark:border-orange-800">
+          <TrendingUp className="h-8 w-8 mx-auto text-orange-600 dark:text-orange-400" />
+          <p className="text-3xl font-bold">500+</p>
+          <p className="text-sm text-muted-foreground">Product Views</p>
+        </div>
+        <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 p-8 rounded-xl text-center space-y-3 border border-green-200 dark:border-green-800">
+          <Award className="h-8 w-8 mx-auto text-green-600 dark:text-green-400" />
+          <p className="text-3xl font-bold">100%</p>
+          <p className="text-sm text-muted-foreground">Verified & Safe</p>
+        </div>
+      </div>
+
+      {/* Trust Badges */}
+      <div className="bg-muted rounded-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="flex flex-col items-center gap-3 text-center">
+          <Truck className="h-8 w-8 text-primary" />
+          <span className="font-semibold text-sm">Fast Delivery</span>
+        </div>
+        <div className="flex flex-col items-center gap-3 text-center">
+          <Shield className="h-8 w-8 text-primary" />
+          <span className="font-semibold text-sm">Secure Payment</span>
+        </div>
+        <div className="flex flex-col items-center gap-3 text-center">
+          <Heart className="h-8 w-8 text-primary" />
+          <span className="font-semibold text-sm">Quality Assured</span>
+        </div>
+        <div className="flex flex-col items-center gap-3 text-center">
+          <Zap className="h-8 w-8 text-primary" />
+          <span className="font-semibold text-sm">Best Prices</span>
+        </div>
+      </div>
+
+      {/* Trending Products Section */}
+      <div id="trending" className="space-y-10">
+        <div className="space-y-3">
+          <div className="inline-block bg-primary/10 px-4 py-2 rounded-full text-sm font-semibold text-primary">
+            Hot Deals
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Trending Products
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            Explore our most popular items right now. Hand-picked from verified sellers.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Link href="#trending">
+            <Button variant="outline" size="lg">
+              View All Products →
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="space-y-10">
+        <div className="text-center space-y-3">
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Why Shop on Daraz?
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            We provide the best shopping experience with quality, trust, and value.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-4 p-8 border rounded-xl hover:shadow-lg transition">
+            <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center">
+              <ShoppingBag className="h-7 w-7 text-primary" />
+            </div>
+            <h3 className="text-2xl font-bold">Wide Selection</h3>
+            <p className="text-muted-foreground">
+              Browse thousands of products across multiple categories from trusted sellers.
+            </p>
+          </div>
+
+          <div className="space-y-4 p-8 border rounded-xl hover:shadow-lg transition">
+            <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center">
+              <TrendingUp className="h-7 w-7 text-primary" />
+            </div>
+            <h3 className="text-2xl font-bold">Best Prices</h3>
+            <p className="text-muted-foreground">
+              Competitive pricing and regular discounts to ensure great value for money.
+            </p>
+          </div>
+
+          <div className="space-y-4 p-8 border rounded-xl hover:shadow-lg transition">
+            <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center">
+              <Shield className="h-7 w-7 text-primary" />
+            </div>
+            <h3 className="text-2xl font-bold">Verified Sellers</h3>
+            <p className="text-muted-foreground">
+              All our resellers are verified and trusted to provide quality products.
+            </p>
+          </div>
+
+          <div className="space-y-4 p-8 border rounded-xl hover:shadow-lg transition">
+            <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center">
+              <Truck className="h-7 w-7 text-primary" />
+            </div>
+            <h3 className="text-2xl font-bold">Fast Delivery</h3>
+            <p className="text-muted-foreground">
+              Get your orders quickly with our reliable and fast delivery network.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section - Seller */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary/95 to-primary/75 text-white p-12 md:p-16">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -mr-40 -mt-40"></div>
+        <div className="relative z-10 space-y-6 max-w-2xl">
+          <h3 className="text-4xl md:text-5xl font-bold">
+            Ready to Become a Seller?
+          </h3>
+          <p className="text-lg text-white/90">
+            Join hundreds of successful resellers on Daraz. Start your business today with zero commission on first 50 sales and dedicated seller support.
+          </p>
+          <Link href="/login">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+              Start Selling Now →
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Newsletter Section */}
+      <div className="space-y-6 p-12 border rounded-2xl bg-muted">
+        <div className="space-y-2">
+          <h3 className="text-3xl font-bold">Stay Updated</h3>
+          <p className="text-muted-foreground">
+            Get the latest deals, new products, and exclusive offers delivered to your inbox.
+          </p>
+        </div>
+        <div className="flex gap-3 max-w-md">
+          <Input
+            placeholder="Enter your email"
+            type="email"
+            className="flex-1"
+          />
+          <Button>Subscribe</Button>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          We respect your privacy. Unsubscribe at any time.
+        </p>
+      </div>
+
+      {/* Bottom CTA */}
+      <div className="text-center space-y-6 py-12">
+        <h2 className="text-3xl font-bold">
+          Everything You Need in One Place
+        </h2>
+        <Link href="#trending">
+          <Button size="lg" variant="outline">
+            Explore Our Collection
+          </Button>
+        </Link>
+      </div>
+    </section>
+  )
+}
