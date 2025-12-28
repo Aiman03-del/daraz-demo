@@ -83,7 +83,7 @@ export default function EditProductPage() {
 
   if (isLoading) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <h1 className="text-2xl font-bold mb-6">Edit Product</h1>
         <p>Loading...</p>
       </div>
@@ -91,7 +91,7 @@ export default function EditProductPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       {/* Header */}
       <div className="mb-8">
         <Link 
