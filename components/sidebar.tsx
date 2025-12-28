@@ -88,7 +88,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <LayoutDashboard size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">Dashboard</span>
+            <span>Dashboard</span>
           </Link>
 
           <Link
@@ -97,7 +97,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <Package size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">My Products</span>
+            <span>My Products</span>
           </Link>
 
           <Link
@@ -106,7 +106,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <ShoppingCart size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">Orders</span>
+            <span>Orders</span>
           </Link>
 
           <Link
@@ -115,7 +115,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <Eye size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">Viewers</span>
+            <span>Viewers</span>
           </Link>
 
           <Link
@@ -124,7 +124,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <PlusCircle size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">Add Product</span>
+            <span>Add Product</span>
           </Link>
         </nav>
       </motion.aside>

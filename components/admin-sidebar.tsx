@@ -88,7 +88,7 @@ export default function AdminSidebar({ isOpen, setIsOpen }: AdminSidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <LayoutDashboard size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">Dashboard</span>
+            <span>Dashboard</span>
           </Link>
 
           <Link
@@ -97,7 +97,7 @@ export default function AdminSidebar({ isOpen, setIsOpen }: AdminSidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <Package size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">All Products</span>
+            <span>All Products</span>
           </Link>
 
           <Link
@@ -106,7 +106,7 @@ export default function AdminSidebar({ isOpen, setIsOpen }: AdminSidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <UserCog size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">User Mgmt</span>
+            <span>User Mgmt</span>
           </Link>
 
           <Link
@@ -115,7 +115,7 @@ export default function AdminSidebar({ isOpen, setIsOpen }: AdminSidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <Users size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">Resellers</span>
+            <span>Resellers</span>
           </Link>
 
           <Link
@@ -124,7 +124,7 @@ export default function AdminSidebar({ isOpen, setIsOpen }: AdminSidebarProps) {
             className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-muted/70 hover:text-foreground text-muted-foreground transition font-medium"
           >
             <PlusCircle size={16} className="sm:w-5 sm:h-5 shrink-0" />
-            <span className="hidden sm:inline">Add Product</span>
+            <span>Add Product</span>
           </Link>
         </nav>
       </motion.aside>
