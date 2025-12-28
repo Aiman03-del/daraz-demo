@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { getUserInfo } from "@/lib/auth"
 import { getProductsByOwner } from "@/lib/product-store"
 import { getViewers } from "@/lib/store"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface ViewerData {
   email: string
@@ -30,9 +31,20 @@ export default function ViewersPage() {
 
   if (isLoading) {
     return (
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Product Viewers</h1>
-        <p className="text-muted-foreground">Loading viewer data...</p>
+      <div className="max-w-5xl mx-auto space-y-6">
+        <Skeleton className="h-8 w-72" />
+        <div className="space-y-4">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="border rounded-xl overflow-hidden bg-card shadow-sm">
+              <div className="h-10 bg-muted" />
+              <div className="p-4 space-y-2">
+                {[...Array(4)].map((_, j) => (
+                  <Skeleton key={j} className="h-5 w-full" />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 // app/layout.tsx
-import "./globals.css"
 import Navbar from "@/components/navbar"
+import "./globals.css"
 import { Toaster } from "sonner"
 
 export default function RootLayout({

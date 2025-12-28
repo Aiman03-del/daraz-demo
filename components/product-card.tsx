@@ -6,6 +6,8 @@ import { Eye, ShoppingCart } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { useEffect, useState } from "react"
+import { getViews } from "@/lib/store"
 
 interface ProductCardProps {
   product: {
@@ -19,12 +21,22 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const [views, setViews] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+    setViews(getViews(product.id))
+  }, [product.id])
+
   return (
-    <motion.div
-      whileHover={{ scale: 1.03 }}
-      transition={{ type: "spring", stiffness: 200 }}
-    >
-      <Card className="overflow-hidden">
+    <div suppressHydrationWarning>
+      <motion.div
+        initial={isMounted ? false : undefined}
+        whileHover={isMounted ? { scale: 1.03 } : {}}
+        transition={isMounted ? { type: "spring", stiffness: 200 } : {}}
+      >
+        <Card className="overflow-hidden">
         <div className="relative h-48 w-full">
           <Image
             src={product.image}
@@ -46,7 +58,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className="flex items-center justify-between text-sm text-muted-foreground">
             <span>{product.reseller}</span>
             <span className="flex items-center gap-1">
-              <Eye size={14} /> {product.views}
+              <Eye size={14} /> {views}
             </span>
           </div>
 
@@ -58,6 +70,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </Link>
         </CardContent>
       </Card>
-    </motion.div>
+      </motion.div>
+    </div>
   )
 }

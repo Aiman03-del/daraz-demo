@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { getUserInfo } from "@/lib/auth"
 import { getOrdersByReseller, type Order } from "@/lib/orders-store"
 import { getProductsByOwner } from "@/lib/product-store"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function ResellerOrdersPage() {
   const [orders, setOrders] = useState<Order[]>([])
@@ -25,9 +26,16 @@ export default function ResellerOrdersPage() {
 
   if (isLoading) {
     return (
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Orders</h1>
-        <p className="text-muted-foreground">Fetching your latest orders...</p>
+      <div className="max-w-5xl mx-auto space-y-6">
+        <Skeleton className="h-8 w-64" />
+        <div className="border rounded-xl overflow-hidden bg-card shadow-sm">
+          <div className="h-10 bg-muted" />
+          <div className="p-4 space-y-2">
+            {[...Array(5)].map((_, i) => (
+              <Skeleton key={i} className="h-5 w-full" />
+            ))}
+          </div>
+        </div>
       </div>
     )
   }

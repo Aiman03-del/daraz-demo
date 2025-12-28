@@ -23,6 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([])
@@ -76,9 +77,16 @@ export default function AdminUsersPage() {
 
   if (isLoading) {
     return (
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">User Management</h1>
-        <p className="text-muted-foreground">Loading users...</p>
+      <div className="max-w-5xl mx-auto space-y-6">
+        <Skeleton className="h-8 w-72" />
+        <div className="border rounded-xl overflow-hidden bg-card shadow-sm">
+          <div className="h-10 bg-muted" />
+          <div className="p-4 space-y-2">
+            {[...Array(6)].map((_, i) => (
+              <Skeleton key={i} className="h-5 w-full" />
+            ))}
+          </div>
+        </div>
       </div>
     )
   }

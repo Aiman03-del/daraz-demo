@@ -7,6 +7,7 @@ import { Eye, Package } from "lucide-react"
 import { getUserInfo } from "@/lib/auth"
 import { getProductsByOwner, type Product } from "@/lib/product-store"
 import { getOrdersByReseller, type Order } from "@/lib/orders-store"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function ResellerDashboard() {
   const [myProducts, setMyProducts] = useState<Product[]>([])
@@ -30,9 +31,27 @@ export default function ResellerDashboard() {
 
   if (isLoading) {
     return (
-      <div className="max-w-5xl mx-auto space-y-6">
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard Overview</h1>
-        <p className="text-muted-foreground">Loading your stats...</p>
+      <div className="max-w-5xl mx-auto space-y-8">
+        <div className="space-y-2">
+          <Skeleton className="h-8 w-64" />
+          <Skeleton className="h-4 w-96" />
+        </div>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="border rounded-xl p-6 bg-card">
+              <Skeleton className="h-5 w-28 mb-2" />
+              <Skeleton className="h-8 w-20" />
+            </div>
+          ))}
+        </div>
+        <div className="border rounded-xl overflow-hidden bg-card shadow-sm">
+          <div className="h-10 bg-muted" />
+          <div className="p-4 space-y-2">
+            <Skeleton className="h-5 w-full" />
+            <Skeleton className="h-5 w-3/4" />
+            <Skeleton className="h-5 w-2/4" />
+          </div>
+        </div>
       </div>
     )
   }

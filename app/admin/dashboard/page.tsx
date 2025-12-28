@@ -6,6 +6,7 @@ import { getUsers } from "@/lib/user-store"
 import StatCard from "@/components/stat-card"
 import { Package, Eye, Users } from "lucide-react"
 import { getViews } from "@/lib/store"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -33,8 +34,16 @@ export default function AdminDashboard() {
     return (
       <div className="max-w-5xl mx-auto space-y-8">
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">Admin Overview</h1>
-          <p className="text-muted-foreground">Loading statistics...</p>
+          <Skeleton className="h-8 w-64" />
+          <Skeleton className="h-4 w-96" />
+        </div>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="border rounded-xl p-6 bg-card">
+              <Skeleton className="h-5 w-28 mb-2" />
+              <Skeleton className="h-8 w-20" />
+            </div>
+          ))}
         </div>
       </div>
     )
