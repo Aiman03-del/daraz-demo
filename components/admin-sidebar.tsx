@@ -1,13 +1,17 @@
 "use client"
 
 import Link from "next/link"
-import { LayoutDashboard, Package, Users, UserCog, PlusCircle, Menu, X } from "lucide-react"
+import { LayoutDashboard, Package, Users, UserCog, PlusCircle, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 
-export default function AdminSidebar() {
-  const [isOpen, setIsOpen] = useState(false)
+interface AdminSidebarProps {
+  isOpen: boolean
+  setIsOpen: (open: boolean) => void
+}
+
+export default function AdminSidebar({ isOpen, setIsOpen }: AdminSidebarProps) {
   const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
@@ -32,17 +36,6 @@ export default function AdminSidebar() {
 
   return (
     <>
-      {/* Mobile Toggle Button - Only show on mobile */}
-      {!isDesktop && (
-        <Button
-          onClick={() => setIsOpen(!isOpen)}
-          className="fixed top-16 sm:top-20 left-3 z-50 rounded-full h-9 w-9 sm:h-10 sm:w-10 p-0 shadow-lg"
-          size="sm"
-        >
-          {isOpen ? <X size={16} className="sm:w-5 sm:h-5" /> : <Menu size={16} className="sm:w-5 sm:h-5" />}
-        </Button>
-      )}
-
       {/* Overlay - Only show on mobile */}
       <AnimatePresence>
         {isOpen && !isDesktop && (

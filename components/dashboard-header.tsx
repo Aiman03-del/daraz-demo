@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { LogOut, User, Bell, Home, Info } from "lucide-react"
+import { LogOut, User, Bell, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -17,9 +17,16 @@ import { logout } from "@/lib/auth"
 import { toast } from "sonner"
 import Cookies from "js-cookie"
 
-export default function DashboardHeader() {
+export default function DashboardHeader({
+  sidebarOpen,
+  setSidebarOpen,
+}: {
+  sidebarOpen: boolean
+  setSidebarOpen: (open: boolean) => void
+}) {
   const router = useRouter()
   const [userInfo, setUserInfo] = useState<any>(null)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
     const checkAuth = () => {
@@ -40,6 +47,19 @@ export default function DashboardHeader() {
     return () => clearInterval(interval)
   }, [router])
 
+  useEffect(() => {
+    // Check initial window size
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024)
+    }
+
+    checkDesktop()
+
+    // Handle window resize
+    window.addEventListener("resize", checkDesktop)
+    return () => window.removeEventListener("resize", checkDesktop)
+  }, [])
+
   const handleLogout = () => {
     const userName = userInfo?.name || "User"
     logout()
@@ -58,14 +78,27 @@ export default function DashboardHeader() {
   return (
     <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 shadow-sm">
       <div className="flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6 gap-4">
-        {/* Left Side - Title */}
-        <div className="flex items-center gap-3">
-          <h1 className="text-lg sm:text-xl font-bold whitespace-nowrap">
-            {userInfo.role === "admin" ? "Admin" : "Reseller"} Dashboard
-          </h1>
-          <Badge variant="outline" className="text-xs capitalize hidden sm:inline-flex">
-            {userInfo.role}
-          </Badge>
+        {/* Left Side - Toggle + Title */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          {/* Mobile Sidebar Toggle */}
+          {!isDesktop && (
+            <Button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="rounded-full h-9 w-9 p-0 shadow-lg"
+              size="sm"
+            >
+              {sidebarOpen ? <X size={16} /> : <Menu size={16} />}
+            </Button>
+          )}
+
+          <div className="flex items-center gap-3">
+            <h1 className="text-lg sm:text-xl font-bold whitespace-nowrap">
+              {userInfo.role === "admin" ? "Admin" : "Reseller"} Dashboard
+            </h1>
+            <Badge variant="outline" className="text-xs capitalize hidden sm:inline-flex">
+              {userInfo.role}
+            </Badge>
+          </div>
         </div>
 
         {/* Right Side - Actions */}
