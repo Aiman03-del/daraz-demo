@@ -58,32 +58,31 @@ export default function DashboardHeader() {
   return (
     <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 shadow-sm">
       <div className="flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6 gap-4">
-        {/* Left Side - Title and Navigation */}
-        <div className="flex items-center gap-4 sm:gap-6">
-          <div className="flex items-center gap-3">
-            <h1 className="text-lg sm:text-xl font-bold whitespace-nowrap">
-              {userInfo.role === "admin" ? "Admin" : "Reseller"} Dashboard
-            </h1>
-            <Badge variant="outline" className="text-xs capitalize hidden sm:inline-flex">
-              {userInfo.role}
-            </Badge>
-          </div>
-
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-4 ml-6 border-l pl-6">
-            <Link href="/" className="flex items-center gap-2 text-sm hover:text-primary transition text-muted-foreground">
-              <Home size={16} />
-              <span className="hidden lg:inline">Home</span>
-            </Link>
-            <Link href="/about" className="flex items-center gap-2 text-sm hover:text-primary transition text-muted-foreground">
-              <Info size={16} />
-              <span className="hidden lg:inline">About</span>
-            </Link>
-          </div>
+        {/* Left Side - Title */}
+        <div className="flex items-center gap-3">
+          <h1 className="text-lg sm:text-xl font-bold whitespace-nowrap">
+            {userInfo.role === "admin" ? "Admin" : "Reseller"} Dashboard
+          </h1>
+          <Badge variant="outline" className="text-xs capitalize hidden sm:inline-flex">
+            {userInfo.role}
+          </Badge>
         </div>
 
         {/* Right Side - Actions */}
         <div className="flex items-center gap-2 sm:gap-4">
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center gap-4">
+            <Link href="/" className="text-sm hover:text-primary transition text-muted-foreground font-medium">
+              Home
+            </Link>
+            <Link href="/about" className="text-sm hover:text-primary transition text-muted-foreground font-medium">
+              About
+            </Link>
+          </div>
+
+          {/* Divider */}
+          <div className="hidden md:block h-5 border-l border-muted-foreground/30"></div>
+
           {/* Notifications */}
           <Button
             variant="ghost"
@@ -131,13 +130,11 @@ export default function DashboardHeader() {
               <div className="md:hidden space-y-1 px-2 py-2">
                 <DropdownMenuItem asChild>
                   <Link href="/" className="flex items-center gap-2 cursor-pointer py-2">
-                    <Home size={16} />
                     Home
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/about" className="flex items-center gap-2 cursor-pointer py-2">
-                    <Info size={16} />
                     About
                   </Link>
                 </DropdownMenuItem>
